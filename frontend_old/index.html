@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>산업안전 AI 어시스턴트</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #004085;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #chatbox {
+      width: 90%;
+      max-width: 800px;
+      height: 65vh;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .msg {
+      margin: 10px 0;
+      display: inline-block;
+      max-width: 80%;
+      line-height: 1.5;
+      word-break: break-word;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 15px;
+    }
+
+    .user {
+      align-self: flex-end;
+      background: #007bff;
+      color: white;
+      border-bottom-right-radius: 2px;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background: #e8f5e9;
+      color: #155724;
+      border-bottom-left-radius: 2px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #666;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+
+    #input-area {
+      width: 90%;
+      max-width: 800px;
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    #userInput {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    #userInput:focus {
+      border-color: #007bff;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .loading {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #cce5ff;
+      border-top: 4px solid #007bff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      align-self: center;
+      margin-top: 15px;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+  </style>
+</head>
+<body>
+  <h2>👷 산업안전 AI 어시스턴트</h2>
+  <div id="chatbox">
+    <div class="msg bot">
+    안녕하세요! 👋 산업안전 AI 어시스턴트입니다.<br>
+    입력하신 작업자 데이터를 바탕으로 <b>산업재해 고위험군 여부</b>를 예측하고, 주요 <b>위험요인</b>과 <b>영향 요인</b>을 분석해드립니다.<br><br>
+    본 시스템은 <b>한국산업안전보건공단(KOSHA)</b>의 데이터를 기반으로 학습된 <b>AI 예측 모델</b>을 활용하여 근로자의 <b>재해 위험 수준</b>을 평가합니다.
+</div>
+
+  </div>
+
+  <div id="input-area">
+    <input id="userInput" placeholder="메세지를 입력하세요." />
+    <button onclick="sendMessage()">보내기</button>
+  </div>
+
+  <script>
+    // ✅ 메세지 전송 함수
+    async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const chatbox = document.getElementById("chatbox");
+
+      const message = input.value.trim();
+      if (!message) return;
+
+      // 사용자 메세지 추가
+      chatbox.innerHTML += `<div class="msg user">👩‍💻 ${message}</div>`;
+      input.value = "";
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      // 로딩 스피너
+      const loader = document.createElement("div");
+      loader.className = "loading";
+      chatbox.appendChild(loader);
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      try {
+        const response = await fetch("http://127.0.0.1:5000/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+
+        const data = await response.json();
+        const formattedResponse = data.response.replace(/\n/g, "<br>");
+        const accidentProb = data.accident_prob ? `${data.accident_prob.toFixed(2)}%` : "N/A";
+        const typeLabel = data.type_label && data.type_label !== "예측 없음" ? data.type_label : "해당 없음";
+
+        loader.remove();
+
+        chatbox.innerHTML += `
+          <div class="msg bot">
+            🤖 ${formattedResponse}
+            <div class="meta">📊 예측결과: ${accidentProb} | 예측 유형: ${typeLabel}</div>
+          </div>
+        `;
+      } catch (error) {
+        loader.remove();
+        chatbox.innerHTML += `<div class="msg bot">⚠️ 서버 응답 오류가 발생했습니다. Flask 서버가 실행 중인지 확인해주세요.</div>`;
+      }
+
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    // ✅ 엔터키로 전송
+    document.getElementById("userInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault(); // 기본 엔터 동작(줄바꿈) 방지
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

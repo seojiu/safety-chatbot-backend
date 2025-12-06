@@ -1,0 +1,50 @@
+[
+  {
+    "id": "e46c3f68-24fa-407f-b1c8-d5a49f4d0745",
+    "username": "근로자10",
+    "password": "1234",
+    "basic_info": {
+      "name": "근로자10",
+      "gender": 1,
+      "age_group": 30,
+      "education": 4,
+      "industry": 3,
+      "occupation": 8,
+      "company_size": 8
+    },
+    "created_at": "2025-12-03T04:44:04.923349",
+    "last_survey_date": null
+  },
+  {
+    "id": "4b0afa43-eca1-4a5f-a72a-ef51407c3833",
+    "username": "1234",
+    "password": "1234",
+    "basic_info": {
+      "name": "근로자100",
+      "gender": 1,
+      "age_group": 30,
+      "education": 4,
+      "occupation": 8,
+      "industry": 3,
+      "company_size": 8
+    },
+    "created_at": "2025-12-03T21:04:57.777097",
+    "last_survey_date": "2025-12-06T09:17:39.045260"
+  },
+  {
+    "id": "78c51473-2a79-46e7-a4bf-4ccec97847e5",
+    "username": "0000",
+    "password": "0000",
+    "basic_info": {
+      "name": "근로자1",
+      "gender": 2,
+      "age_group": 50,
+      "education": 4,
+      "occupation": 9,
+      "industry": 3,
+      "company_size": 8
+    },
+    "created_at": "2025-12-06T08:03:49.960138",
+    "last_survey_date": "2025-12-06T08:56:51.111026"
+  }
+]
