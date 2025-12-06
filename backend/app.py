@@ -624,6 +624,29 @@ def chat():
     except Exception as e:
         print(f"[LLM ERROR] {e}")
         return jsonify({"response": "죄송합니다. 일시적인 오류가 발생했습니다."})
+        
+@app.route("/debug/worker/<worker_id>", methods=["GET"])
+def debug_worker(worker_id):
+    workers = load_workers()
+    worker = next((w for w in workers if w["id"] == worker_id), None)
+    
+    if not worker:
+        return jsonify({"error": "Worker not found"}), 404
+    
+    # 현재 저장된 worker JSON
+    profile = worker.get("profile", {})
+
+    # 모델 입력 변환 후 값 확인
+    df = pd.DataFrame([profile], columns=BINARY_FEATURES).fillna(0)
+    
+    debug_data = {
+        "raw_profile": profile,
+        "model_input_for_binary": df.to_dict(orient="records")[0],
+        "binary_prediction_prob": float(binary_model.predict_proba(df)[0,1] * 100.0)
+    }
+
+    return jsonify(debug_data)
+
 
 if __name__ == "__main__":
     random.seed(42)
