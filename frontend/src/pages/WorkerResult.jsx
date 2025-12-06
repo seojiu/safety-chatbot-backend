@@ -186,8 +186,8 @@ const WorkerResult = () => {
                             <DetailItem icon={<Clock size={18} />} label="주당 근무" value={`${result.profile.work_hours}시간`} />
                             <DetailItem icon={<Briefcase size={18} />} label="근속년수" value={`${result.profile.working_years}년`} />
                             <DetailItem icon={<Heart size={18} />} label="수면 품질" value={`${((result.profile.sleep_quality1 + result.profile.sleep_quality2 + result.profile.sleep_quality3) / 3).toFixed(1)}/5`} />
-                            <DetailItem icon={<Activity size={18} />} label="육체 부담" value={`${((result.profile.physical_risk1 + result.profile.physical_risk2 + result.profile.physical_risk3 + result.profile.physical_risk4 + result.profile.physical_risk5 + result.profile.physical_risk6 + result.profile.physical_risk7 + result.profile.physical_risk8 + result.profile.physical_risk9) / 9).toFixed(1)}/7`} />
-                            <DetailItem icon={<Activity size={18} />} label="정신 스트레스" value={`${((result.profile.psychosocial_risk1 + result.profile.psychosocial_risk2 + result.profile.psychosocial_risk3) / 3).toFixed(1)}/7`} />
+                            <DetailItem icon={<Activity size={18} />} label="육체 부담" value={`${(8 - (result.profile.physical_risk1 + result.profile.physical_risk2 + result.profile.physical_risk3 + result.profile.physical_risk4 + result.profile.physical_risk5 + result.profile.physical_risk6 + result.profile.physical_risk7 + result.profile.physical_risk8 + result.profile.physical_risk9) / 9).toFixed(1)}/7`} />
+                            <DetailItem icon={<Activity size={18} />} label="정신 스트레스" value={`${(8 - (result.profile.psychosocial_risk1 + result.profile.psychosocial_risk2 + result.profile.psychosocial_risk3) / 3).toFixed(1)}/7`} />
                             <DetailItem icon={<User size={18} />} label="산업분야" value={getIndustry(result.profile.industry)} />
                         </div>
                     </div>
