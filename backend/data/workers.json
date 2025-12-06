@@ -41,27 +41,25 @@
       "sleep_quality1": 1,
       "sleep_quality2": 1,
       "sleep_quality3": 1,
-      "well_being": 2,
-      "physical_risk": 1,
-      "physical_risk.1": 1
+      "well_being": 2
     },
     "risk_prob": 3.2283072471618652,
     "risk_type": "예측 없음",
     "top_risks": [
       {
-        "feature": "work_hours",
-        "label": "주당 근무시간",
-        "weight": 36.3
-      },
-      {
         "feature": "safety_training",
         "label": "건강·안전정보 제공 정도",
-        "weight": 34.8
+        "weight": 35.3
       },
       {
-        "feature": "physical_risk3",
-        "label": "고온 환경 노출",
-        "weight": 28.9
+        "feature": "psychosocial_risk3",
+        "label": "정서적 불안 상황 경험 빈도",
+        "weight": 33.9
+      },
+      {
+        "feature": "work_hours",
+        "label": "주당 근무시간",
+        "weight": 30.8
       }
     ],
     "timestamp": "2025-12-03T03:37:50.533484"
@@ -108,27 +106,25 @@
       "sleep_quality1": 4,
       "sleep_quality2": 4,
       "sleep_quality3": 4,
-      "well_being": 2,
-      "physical_risk": 1,
-      "physical_risk.1": 1
+      "well_being": 2
     },
     "risk_prob": 0.7405996918678284,
     "risk_type": "예측 없음",
     "top_risks": [
       {
-        "feature": "presenteeism",
-        "label": "아플 때 근무 경험",
-        "weight": 36.8
+        "feature": "safety_training",
+        "label": "건강·안전정보 제공 정도",
+        "weight": 36.6
       },
       {
         "feature": "physical_risk3",
         "label": "고온 환경 노출",
-        "weight": 31.7
+        "weight": 34.2
       },
       {
-        "feature": "safety_training",
-        "label": "건강·안전정보 제공 정도",
-        "weight": 31.6
+        "feature": "ergonomic_risk1",
+        "label": "피로하거나 통증 유발 자세",
+        "weight": 29.1
       }
     ],
     "timestamp": "2025-12-03T04:35:16.745322"
@@ -184,19 +180,19 @@
     "risk_type": "예측 없음",
     "top_risks": [
       {
-        "feature": "ergonomic_risk1",
-        "label": "피로하거나 통증 유발 자세",
-        "weight": 38.5
-      },
-      {
         "feature": "physical_risk7",
         "label": "화학물질 접촉",
-        "weight": 36.1
+        "weight": 37.5
       },
       {
-        "feature": "physical_risk4",
-        "label": "저온 환경 노출",
-        "weight": 25.4
+        "feature": "ergonomic_risk1",
+        "label": "피로하거나 통증 유발 자세",
+        "weight": 33.9
+      },
+      {
+        "feature": "physical_risk5",
+        "label": "연기·흄·먼지 흡입 노출",
+        "weight": 28.6
       }
     ],
     "timestamp": "2025-12-06T09:17:39.045260"
@@ -244,9 +240,7 @@
       "sleep_quality1": 2,
       "sleep_quality2": 2,
       "sleep_quality3": 2,
-      "well_being": 2,
-      "physical_risk": 1,
-      "physical_risk.1": 1
+      "well_being": 2
     },
     "risk_prob": 0.7235150337219238,
     "risk_type": "예측 없음",
@@ -254,17 +248,17 @@
       {
         "feature": "presenteeism",
         "label": "아플 때 근무 경험",
-        "weight": 91.2
+        "weight": 82.2
       },
       {
         "feature": "physical_risk5",
         "label": "연기·흄·먼지 흡입 노출",
-        "weight": 5.2
+        "weight": 10.0
       },
       {
         "feature": "ergonomic_risk3",
         "label": "무거운 물건 밀기·끌기·운반",
-        "weight": 3.7
+        "weight": 7.8
       }
     ],
     "timestamp": "2025-12-04T16:15:08.368038"
@@ -312,27 +306,25 @@
       "sleep_quality1": 2,
       "sleep_quality2": 2,
       "sleep_quality3": 2,
-      "well_being": 4,
-      "physical_risk": 6,
-      "physical_risk.1": 7
+      "well_being": 4
     },
-    "risk_prob": 92.32283782958984,
-    "risk_type": "업무상 사고",
+    "risk_prob": 5.223103046417236,
+    "risk_type": "예측 없음",
     "top_risks": [
       {
-        "feature": "physical_risk5",
-        "label": "연기·흄·먼지 흡입 노출",
-        "weight": 37.5
+        "feature": "presenteeism",
+        "label": "아플 때 근무 경험",
+        "weight": 50.9
       },
       {
-        "feature": "work_hours",
-        "label": "주당 근무시간",
-        "weight": 34.4
+        "feature": "psychosocial_risk3",
+        "label": "정서적 불안 상황 경험 빈도",
+        "weight": 38.4
       },
       {
-        "feature": "ergonomic_risk3",
-        "label": "무거운 물건 밀기·끌기·운반",
-        "weight": 28.1
+        "feature": "physical_risk2",
+        "label": "심한 소음 노출",
+        "weight": 10.7
       }
     ],
     "timestamp": "2025-12-06T08:12:15.365384"
@@ -380,27 +372,25 @@
       "sleep_quality1": 3,
       "sleep_quality2": 3,
       "sleep_quality3": 3,
-      "well_being": 2,
-      "physical_risk": 2,
-      "physical_risk.1": 2
+      "well_being": 2
     },
     "risk_prob": 2.2479076385498047,
     "risk_type": "예측 없음",
     "top_risks": [
       {
-        "feature": "physical_risk2",
-        "label": "심한 소음 노출",
-        "weight": 42.1
-      },
-      {
         "feature": "psychosocial_risk3",
         "label": "정서적 불안 상황 경험 빈도",
-        "weight": 35.3
+        "weight": 48.3
+      },
+      {
+        "feature": "physical_risk2",
+        "label": "심한 소음 노출",
+        "weight": 32.2
       },
       {
         "feature": "physical_risk3",
         "label": "고온 환경 노출",
-        "weight": 22.6
+        "weight": 19.5
       }
     ],
     "timestamp": "2025-12-06T08:12:59.231735"
@@ -448,27 +438,25 @@
       "sleep_quality1": 4,
       "sleep_quality2": 4,
       "sleep_quality3": 4,
-      "well_being": 3,
-      "physical_risk": 4,
-      "physical_risk.1": 5
+      "well_being": 3
     },
-    "risk_prob": 61.59330749511719,
+    "risk_prob": 63.40508270263672,
     "risk_type": "업무상 질병",
     "top_risks": [
       {
+        "feature": "presenteeism",
+        "label": "아플 때 근무 경험",
+        "weight": 42.8
+      },
+      {
         "feature": "psychosocial_risk3",
         "label": "정서적 불안 상황 경험 빈도",
-        "weight": 43.9
+        "weight": 32.6
       },
       {
         "feature": "physical_risk2",
         "label": "심한 소음 노출",
-        "weight": 32.6
-      },
-      {
-        "feature": "ergonomic_risk3",
-        "label": "무거운 물건 밀기·끌기·운반",
-        "weight": 23.6
+        "weight": 24.7
       }
     ],
     "timestamp": "2025-12-06T08:15:08.524288"
@@ -516,27 +504,25 @@
       "sleep_quality1": 4,
       "sleep_quality2": 4,
       "sleep_quality3": 4,
-      "well_being": 3,
-      "physical_risk": 4,
-      "physical_risk.1": 5
+      "well_being": 3
     },
-    "risk_prob": 1.724164605140686,
+    "risk_prob": 1.1880877017974854,
     "risk_type": "예측 없음",
     "top_risks": [
       {
         "feature": "presenteeism",
         "label": "아플 때 근무 경험",
-        "weight": 96.3
+        "weight": 93.2
       },
       {
         "feature": "safety_training",
         "label": "건강·안전정보 제공 정도",
-        "weight": 2.2
+        "weight": 3.5
       },
       {
-        "feature": "work_hours",
-        "label": "주당 근무시간",
-        "weight": 1.5
+        "feature": "psychosocial_risk3",
+        "label": "정서적 불안 상황 경험 빈도",
+        "weight": 3.3
       }
     ],
     "timestamp": "2025-12-06T08:15:38.542102"
@@ -593,19 +579,19 @@
     "risk_type": "예측 없음",
     "top_risks": [
       {
-        "feature": "presenteeism",
-        "label": "아플 때 근무 경험",
-        "weight": 55.9
-      },
-      {
         "feature": "psychosocial_risk3",
         "label": "정서적 불안 상황 경험 빈도",
-        "weight": 25.3
+        "weight": 49.8
+      },
+      {
+        "feature": "presenteeism",
+        "label": "아플 때 근무 경험",
+        "weight": 29.8
       },
       {
         "feature": "physical_risk3",
         "label": "고온 환경 노출",
-        "weight": 18.8
+        "weight": 20.5
       }
     ],
     "timestamp": "2025-12-06T08:39:55.896771"
@@ -662,19 +648,19 @@
     "risk_type": "업무상 질병",
     "top_risks": [
       {
+        "feature": "presenteeism",
+        "label": "아플 때 근무 경험",
+        "weight": 48.1
+      },
+      {
         "feature": "psychosocial_risk3",
         "label": "정서적 불안 상황 경험 빈도",
-        "weight": 44.1
+        "weight": 28.6
       },
       {
         "feature": "physical_risk2",
         "label": "심한 소음 노출",
-        "weight": 28.9
-      },
-      {
-        "feature": "psychosocial_risk2",
-        "label": "화난 고객·환자 응대 빈도",
-        "weight": 27.0
+        "weight": 23.3
       }
     ],
     "timestamp": "2025-12-06T08:39:58.146392"
@@ -731,19 +717,19 @@
     "risk_type": "업무상 질병",
     "top_risks": [
       {
-        "feature": "presenteeism",
-        "label": "아플 때 근무 경험",
-        "weight": 46.6
-      },
-      {
         "feature": "ergonomic_risk3",
         "label": "무거운 물건 밀기·끌기·운반",
-        "weight": 28.3
+        "weight": 38.7
       },
       {
-        "feature": "physical_risk5",
-        "label": "연기·흄·먼지 흡입 노출",
-        "weight": 25.1
+        "feature": "work_hours",
+        "label": "주당 근무시간",
+        "weight": 32.1
+      },
+      {
+        "feature": "presenteeism",
+        "label": "아플 때 근무 경험",
+        "weight": 29.3
       }
     ],
     "timestamp": "2025-12-06T08:40:00.395818"
@@ -800,19 +786,19 @@
     "risk_type": "업무상 질병",
     "top_risks": [
       {
-        "feature": "presenteeism",
-        "label": "아플 때 근무 경험",
-        "weight": 41.1
-      },
-      {
         "feature": "physical_risk4",
         "label": "저온 환경 노출",
-        "weight": 31.8
+        "weight": 42.8
       },
       {
-        "feature": "physical_risk1",
-        "label": "진동 노출 (수공구·기계 등)",
-        "weight": 27.1
+        "feature": "physical_risk3",
+        "label": "고온 환경 노출",
+        "weight": 31.0
+      },
+      {
+        "feature": "ergonomic_risk4",
+        "label": "오랜 시간 서 있는 자세",
+        "weight": 26.2
       }
     ],
     "timestamp": "2025-12-06T08:42:37.715190"
@@ -870,17 +856,17 @@
       {
         "feature": "presenteeism",
         "label": "아플 때 근무 경험",
-        "weight": 60.7
+        "weight": 42.8
       },
       {
         "feature": "ergonomic_risk3",
         "label": "무거운 물건 밀기·끌기·운반",
-        "weight": 20.7
+        "weight": 32.6
       },
       {
         "feature": "physical_risk5",
         "label": "연기·흄·먼지 흡입 노출",
-        "weight": 18.6
+        "weight": 24.7
       }
     ],
     "timestamp": "2025-12-06T08:56:51.111026"
@@ -937,19 +923,19 @@
     "risk_type": "업무상 질병",
     "top_risks": [
       {
+        "feature": "presenteeism",
+        "label": "아플 때 근무 경험",
+        "weight": 42.8
+      },
+      {
         "feature": "psychosocial_risk3",
         "label": "정서적 불안 상황 경험 빈도",
-        "weight": 41.2
+        "weight": 30.1
       },
       {
         "feature": "physical_risk2",
         "label": "심한 소음 노출",
-        "weight": 30.7
-      },
-      {
-        "feature": "physical_risk3",
-        "label": "고온 환경 노출",
-        "weight": 28.1
+        "weight": 27.1
       }
     ],
     "timestamp": "2025-12-06T08:58:09.553754"
@@ -1008,232 +994,19 @@
       {
         "feature": "safety_training",
         "label": "건강·안전정보 제공 정도",
-        "weight": 50.1
+        "weight": 45.9
       },
       {
-        "feature": "physical_risk3",
-        "label": "고온 환경 노출",
-        "weight": 25.8
+        "feature": "ergonomic_risk1",
+        "label": "피로하거나 통증 유발 자세",
+        "weight": 27.2
       },
       {
         "feature": "psychosocial_risk3",
         "label": "정서적 불안 상황 경험 빈도",
-        "weight": 24.1
+        "weight": 27.0
       }
     ],
     "timestamp": "2025-12-06T08:58:09.553754"
-  },
-  {
-    "id": "77b659fe-35cc-4971-9d86-1f3afca3a45d",
-    "user_id": null,
-    "name": "근로자4",
-    "profile": {
-      "gender": 1,
-      "age": 44,
-      "age_group": 40,
-      "education": 4.0,
-      "employment_type": 1.0,
-      "employment_status": 1.0,
-      "occupation": 8,
-      "industry": 8,
-      "company_size": 2.0,
-      "work_hours": 40.0,
-      "shift_work": 2.0,
-      "night_work": 10.0,
-      "physical_risk1": 7.0,
-      "physical_risk2": 5.0,
-      "physical_risk3": 5.0,
-      "physical_risk4": 2.0,
-      "physical_risk5": 6.0,
-      "physical_risk6": 6.0,
-      "physical_risk7": 6.0,
-      "physical_risk8": 6.0,
-      "physical_risk9": 6.0,
-      "ergonomic_risk1": 5.0,
-      "ergonomic_risk2": 6.0,
-      "ergonomic_risk3": 3.0,
-      "ergonomic_risk4": 6.0,
-      "ergonomic_risk5": 1.0,
-      "ergonomic_risk6": 3.0,
-      "psychosocial_risk1": 4.0,
-      "psychosocial_risk2": 6.0,
-      "psychosocial_risk3": 6.0,
-      "health_condition": 2.0,
-      "work_related_disease": 2.0,
-      "injury_absence_days": 0.0,
-      "illness_absence_days": 2.0,
-      "presenteeism": 2.0,
-      "sleep_quality1": 5.0,
-      "sleep_quality2": 5.0,
-      "sleep_quality3": 5.0,
-      "well_being": 2.0,
-      "working_years": 15.0,
-      "safety_training": 2.0,
-      "training_participation": 2.0,
-      "physical_risk": 6.0,
-      "physical_risk.1": 6.0
-    },
-    "risk_prob": 85.12062072753906,
-    "risk_type": "업무상 질병",
-    "top_risks": [
-      {
-        "feature": "physical_risk3",
-        "label": "고온 환경 노출",
-        "weight": 35.9
-      },
-      {
-        "feature": "ergonomic_risk4",
-        "label": "오랜 시간 서 있는 자세",
-        "weight": 32.2
-      },
-      {
-        "feature": "physical_risk2",
-        "label": "심한 소음 노출",
-        "weight": 31.9
-      }
-    ],
-    "timestamp": "2025-12-07T02:09:17.836755"
-  },
-  {
-    "id": "6d7b2fd2-361d-4f36-ab45-59a496d9bfb8",
-    "user_id": null,
-    "name": "근로자5",
-    "profile": {
-      "gender": 2,
-      "age": 34,
-      "age_group": 30,
-      "education": 4.0,
-      "employment_type": 3.0,
-      "employment_status": 2.0,
-      "occupation": 7,
-      "industry": 3,
-      "company_size": 4.0,
-      "work_hours": 40.0,
-      "shift_work": 2.0,
-      "night_work": 10.0,
-      "physical_risk1": 7.0,
-      "physical_risk2": 5.0,
-      "physical_risk3": 6.0,
-      "physical_risk4": 6.0,
-      "physical_risk5": 3.0,
-      "physical_risk6": 7.0,
-      "physical_risk7": 7.0,
-      "physical_risk8": 7.0,
-      "physical_risk9": 7.0,
-      "ergonomic_risk1": 3.0,
-      "ergonomic_risk2": 7.0,
-      "ergonomic_risk3": 6.0,
-      "ergonomic_risk4": 6.0,
-      "ergonomic_risk5": 2.0,
-      "ergonomic_risk6": 2.0,
-      "psychosocial_risk1": 7.0,
-      "psychosocial_risk2": 7.0,
-      "psychosocial_risk3": 7.0,
-      "health_condition": 2.0,
-      "work_related_disease": 2.0,
-      "injury_absence_days": 0.0,
-      "illness_absence_days": 3.0,
-      "presenteeism": 1.0,
-      "sleep_quality1": 4.0,
-      "sleep_quality2": 5.0,
-      "sleep_quality3": 3.0,
-      "well_being": 5.0,
-      "working_years": 0.0,
-      "safety_training": 2.0,
-      "training_participation": 2.0,
-      "physical_risk": 7.0,
-      "physical_risk.1": 7.0
-    },
-    "risk_prob": 99.9817886352539,
-    "risk_type": "업무상 질병",
-    "top_risks": [
-      {
-        "feature": "work_hours",
-        "label": "주당 근무시간",
-        "weight": 64.2
-      },
-      {
-        "feature": "shift_work",
-        "label": "교대근무 형태",
-        "weight": 20.6
-      },
-      {
-        "feature": "physical_risk3",
-        "label": "고온 환경 노출",
-        "weight": 15.2
-      }
-    ],
-    "timestamp": "2025-12-07T02:09:18.088664"
-  },
-  {
-    "id": "ecb10b55-6c33-4d3d-8d20-19c1ae1fc0f4",
-    "user_id": null,
-    "name": "근로자6",
-    "profile": {
-      "gender": 1,
-      "age": 54,
-      "age_group": 50,
-      "education": 1.0,
-      "employment_type": 3.0,
-      "employment_status": 1.0,
-      "occupation": 9,
-      "industry": 12,
-      "company_size": 2.0,
-      "work_hours": 48.0,
-      "shift_work": 2.0,
-      "night_work": 10.0,
-      "physical_risk1": 7.0,
-      "physical_risk2": 7.0,
-      "physical_risk3": 7.0,
-      "physical_risk4": 7.0,
-      "physical_risk5": 7.0,
-      "physical_risk6": 7.0,
-      "physical_risk7": 7.0,
-      "physical_risk8": 7.0,
-      "physical_risk9": 7.0,
-      "ergonomic_risk1": 7.0,
-      "ergonomic_risk2": 7.0,
-      "ergonomic_risk3": 5.0,
-      "ergonomic_risk4": 6.0,
-      "ergonomic_risk5": 3.0,
-      "ergonomic_risk6": 5.0,
-      "psychosocial_risk1": 2.0,
-      "psychosocial_risk2": 4.0,
-      "psychosocial_risk3": 6.0,
-      "health_condition": 2.0,
-      "work_related_disease": 2.0,
-      "injury_absence_days": 0.0,
-      "illness_absence_days": 2.0,
-      "presenteeism": 1.0,
-      "sleep_quality1": 4.0,
-      "sleep_quality2": 5.0,
-      "sleep_quality3": 5.0,
-      "well_being": 4.0,
-      "working_years": 8.0,
-      "safety_training": 2.0,
-      "training_participation": 2.0,
-      "physical_risk": 7.0,
-      "physical_risk.1": 7.0
-    },
-    "risk_prob": 99.91117095947266,
-    "risk_type": "업무상 질병",
-    "top_risks": [
-      {
-        "feature": "physical_risk7",
-        "label": "화학물질 접촉",
-        "weight": 35.9
-      },
-      {
-        "feature": "ergonomic_risk2",
-        "label": "사람을 들어올리거나 이동",
-        "weight": 32.2
-      },
-      {
-        "feature": "shift_work",
-        "label": "교대근무 형태",
-        "weight": 31.9
-      }
-    ],
-    "timestamp": "2025-12-07T02:09:18.272207"
   }
 ]
