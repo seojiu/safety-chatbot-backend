@@ -219,8 +219,15 @@ def detect_solution_request(text: str) -> bool:
 LOW_RISK_THRESHOLD = 20.0
 
 def predict_worker_risk(profile: dict):
+    # 모델 피처 매핑: physical_risk8 → physical_risk, physical_risk9 → physical_risk.1
+    profile_copy = profile.copy()
+    if "physical_risk8" in profile_copy:
+        profile_copy["physical_risk"] = profile_copy["physical_risk8"]
+    if "physical_risk9" in profile_copy:
+        profile_copy["physical_risk.1"] = profile_copy["physical_risk9"]
+
     # 모델 입력에 필요한 컬럼만 추출 및 0으로 채움
-    df = pd.DataFrame([profile], columns=BINARY_FEATURES).fillna(0)
+    df = pd.DataFrame([profile_copy], columns=BINARY_FEATURES).fillna(0)
     prob = float(binary_model.predict_proba(df)[0, 1] * 100.0)
     if prob >= LOW_RISK_THRESHOLD:
         typ = int(type_model.predict(df)[0])
@@ -266,7 +273,15 @@ def _rand_in_domain(col, base_val):
 def get_top_features_local(model, profile_dict, top_k=3, n_samples=64):
     random.seed(42)
     np.random.seed(42)
-    x0 = pd.DataFrame([profile_dict], columns=BINARY_FEATURES).fillna(0)
+    
+    # 모델 피처 매핑
+    profile_copy = profile_dict.copy()
+    if "physical_risk8" in profile_copy:
+        profile_copy["physical_risk"] = profile_copy["physical_risk8"]
+    if "physical_risk9" in profile_copy:
+        profile_copy["physical_risk.1"] = profile_copy["physical_risk9"]
+
+    x0 = pd.DataFrame([profile_copy], columns=BINARY_FEATURES).fillna(0)
     base_prob = float(model.predict_proba(x0)[0, 1])
     impacts = {}
     for col in BINARY_FEATURES:
