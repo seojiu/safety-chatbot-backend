@@ -98,9 +98,22 @@ const WorkerDashboard = () => {
         setLoading(true);
         try {
             const { name, ...profile } = formData;
+
+            // Reverse coding for risk fields (UI: 1=None -> 7=Always, Backend: 1=Always -> 7=None)
+            const reverseFields = [
+                'physical_risk1', 'physical_risk2', 'physical_risk3', 'physical_risk4', 'physical_risk5', 'physical_risk6', 'physical_risk7', 'physical_risk8', 'physical_risk9',
+                'ergonomic_risk1', 'ergonomic_risk2', 'ergonomic_risk3', 'ergonomic_risk4', 'ergonomic_risk5', 'ergonomic_risk6',
+                'psychosocial_risk1', 'psychosocial_risk2', 'psychosocial_risk3'
+            ];
+
+            const submitProfile = { ...profile };
+            reverseFields.forEach(field => {
+                submitProfile[field] = 8 - submitProfile[field];
+            });
+
             const res = await axios.post(`${API_BASE_URL}/api/survey`, {
                 name: name,
-                profile: profile,
+                profile: submitProfile,
                 user_id: userId
             });
             navigate(`/worker/result/${res.data.id}`);
@@ -445,8 +458,8 @@ const RangeInput = ({ label, name, value, onChange, min = 1, max = 7 }) => (
             style={{ width: '100%', accentColor: '#6366f1', cursor: 'pointer' }}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: '#9ca3af', marginTop: '0.25rem' }}>
-            <span>{min === 1 && max === 5 ? '매일' : '매우 자주'}</span>
-            <span>{min === 1 && max === 5 ? '전혀 없음' : '전혀 없음'}</span>
+            <span>{min === 1 && max === 5 ? '매일' : '전혀 없음'}</span>
+            <span>{min === 1 && max === 5 ? '전혀 없음' : '근무 시간 내내'}</span>
         </div>
     </div>
 );
