@@ -90,22 +90,20 @@ def manage_settings():
     workers = load_workers()
     updated_count = 0
     for worker in workers:
-        if "profile" not in worker: continue
+        if "profile" not in worker:
+            continue
         
-        # Update fields
-        worker["profile"].update(new_settings)
-        
-        # Re-predict Risk
+        # Re-predict Risk based on existing profile (unchanged)
         prob, type_label = predict_worker_risk(worker["profile"])
         worker["risk_prob"] = prob
         worker["risk_type"] = type_label
         
-        # Re-calculate Top Risks (Optional but recommended for consistency)
+        # Re-calculate Top Risks (optional but okay)
         top_feats = get_top_features_local(binary_model, worker["profile"], top_k=3, n_samples=64)
         worker["top_risks"] = [{"feature": f, "label": l, "weight": w} for f, l, w in top_feats]
         
         updated_count += 1
-        
+
     save_workers(workers)
     
     return jsonify({"message": f"Settings updated. {len(users)} users and {updated_count} records updated.", "settings": new_settings})
@@ -624,7 +622,7 @@ def chat():
     except Exception as e:
         print(f"[LLM ERROR] {e}")
         return jsonify({"response": "죄송합니다. 일시적인 오류가 발생했습니다."})
-        
+
 @app.route("/debug/worker/<worker_id>", methods=["GET"])
 def debug_worker(worker_id):
     workers = load_workers()
