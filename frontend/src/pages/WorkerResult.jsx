@@ -151,7 +151,7 @@ const WorkerResult = () => {
                         {/* Top Risks */}
                         <h3 style={{ fontSize: '1rem', fontWeight: '600', color: '#374151', margin: '0 0 1rem 0' }}>주요 위험 요인</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                            {result.top_risks.map((risk, idx) => (
+                            {(result.top_risks || []).map((risk, idx) => (
                                 <div key={idx} style={{ backgroundColor: 'white', border: '1px solid #e5e7eb', padding: '1rem', borderRadius: '0.75rem' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                                         <span style={{ fontWeight: '600', color: '#1f2937', fontSize: '0.875rem' }}>{risk.label}</span>

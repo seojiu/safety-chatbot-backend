@@ -17,13 +17,88 @@ BINARY_FEATURES = list(getattr(binary_model, "feature_names_in_", []))
 
 # 2. Define Prediction Function (Logic from app.py)
 LOW_RISK_THRESHOLD = 20.0
+from utils.feature import FEATURE_LABELS, NON_ACTIONABLE
+
+# Copying get_top_features_local logic or importing it if possible. 
+# Since app.py is in the same dir, we can try importing, but app.py initializes Flask app.
+# Better to copy the helper functions to avoid side effects or circular imports if app.py imports this.
+# Actually, let's just copy the necessary parts for a standalone script.
+
+ACTIONABLE = set(FEATURE_LABELS.keys()) - NON_ACTIONABLE
+DOMAIN = {
+    "work_hours": (0, 84),
+    "shift_work": (0, 4),
+    "night_work": (0, 7),
+    "safety_training": (1, 4),
+    "training_participation": (1, 2),
+    "presenteeism": (1, 2),
+    "employment_status": (1, 3),
+    "working_years": (0, 40),
+    "health_condition": (1, 5),
+    "work_related_disease": (1, 2),
+    "well_being": (1, 6),
+    **{f"physical_risk{i}": (1, 7) for i in range(1, 10)},
+    **{f"ergonomic_risk{i}": (1, 7) for i in range(1, 7)},
+    **{f"psychosocial_risk{i}": (1, 7) for i in range(1, 4)},
+    "sleep_quality1": (1, 5),
+    "sleep_quality2": (1, 5),
+    "sleep_quality3": (1, 5),
+}
+
+def _rand_in_domain(col, base_val):
+    lo, hi = DOMAIN.get(col, (None, None))
+    if lo is None:
+        if isinstance(base_val, (int, float)):
+            span = max(1, int(abs(base_val) * 0.1))
+            lo = int(max(0, base_val - span))
+            hi = int(base_val + span)
+        else:
+            return base_val
+    if isinstance(base_val, float):
+        return float(np.random.randint(lo, hi))
+    return int(np.random.randint(lo, hi))
+
+def get_top_features_local(model, profile_dict, top_k=3, n_samples=64):
+    np.random.seed(42)
+    
+    # Ensure profile has mapped keys if needed (8->physical_risk)
+    # But the model expects mapped keys.
+    profile_copy = profile_dict.copy()
+    if "physical_risk8" in profile_copy:
+        profile_copy["physical_risk"] = profile_copy["physical_risk8"]
+    if "physical_risk9" in profile_copy:
+        profile_copy["physical_risk.1"] = profile_copy["physical_risk9"]
+
+    x0 = pd.DataFrame([profile_copy], columns=BINARY_FEATURES).fillna(0)
+    base_prob = float(model.predict_proba(x0)[0, 1])
+    impacts = {}
+    for col in BINARY_FEATURES:
+        if col not in ACTIONABLE:
+            continue
+        rows = []
+        for _ in range(n_samples):
+            row = dict(profile_copy)
+            row[col] = _rand_in_domain(col, profile_copy.get(col, 0))
+            rows.append(row)
+        X = pd.DataFrame(rows, columns=BINARY_FEATURES).fillna(0)
+        probs = model.predict_proba(X)[:, 1]
+        impacts[col] = float(np.mean(np.abs(probs - base_prob)))
+    if not impacts:
+        return []
+    s = pd.Series(impacts).sort_values(ascending=False)
+    s = s[s > 0]
+    if s.empty:
+        return []
+    top = s.head(top_k)
+    weights = (top / top.sum() * 100.0).round(1)
+    out = []
+    for f, w in weights.items():
+        label = FEATURE_LABELS.get(f, f)
+        out.append({"feature": f, "label": label, "weight": float(w)})
+    return out
 
 def predict_worker_risk(profile: dict):
     # Feature Mapping for Model Compatibility
-    # The model expects 'physical_risk' and 'physical_risk.1' instead of 8 and 9 in some versions,
-    # or just uses them if trained that way. 
-    # Based on app.py, we need to map 8->physical_risk and 9->physical_risk.1
-    
     profile_copy = profile.copy()
     if "physical_risk8" in profile_copy:
         profile_copy["physical_risk"] = profile_copy["physical_risk8"]
@@ -89,18 +164,20 @@ if os.path.exists(DATA_FILE):
 
 print(f"Loaded {len(workers)} existing workers.")
 
-# 5. Inject New Workers
+# 5. Inject New Workers (Avoid duplicates if already added)
+existing_names = {w.get("name") for w in workers}
 for name, profile in new_data_raw.items():
-    # Check if worker with this name already exists to avoid dupes (optional, but good practice)
-    # We'll just append them as new entries for now to ensure they are added.
-    new_worker = {
-        "id": str(uuid.uuid4()),
-        "name": name,
-        "profile": profile,
-        "timestamp": pd.Timestamp.now().isoformat()
-    }
-    workers.append(new_worker)
-    print(f"Added {name}")
+    if name not in existing_names:
+        new_worker = {
+            "id": str(uuid.uuid4()),
+            "name": name,
+            "profile": profile,
+            "timestamp": pd.Timestamp.now().isoformat()
+        }
+        workers.append(new_worker)
+        print(f"Added {name}")
+    else:
+        print(f"Skipping {name} (Already exists)")
 
 # 6. Recalculate Risk for ALL Workers
 print("Recalculating risks for all workers...")
@@ -114,10 +191,9 @@ for w in workers:
     w["risk_prob"] = prob
     w["risk_type"] = type_label
     
-    # Simple top risks calculation (mocking the complex one for speed, or we could import it)
-    # For now, we just want the risk score to be correct. 
-    # If top_risks is missing, we might want to add a placeholder or copy logic.
-    # But the user's main concern is the risk score distribution.
+    # Calculate Top Risks
+    top_risks = get_top_features_local(binary_model, profile, top_k=3, n_samples=64)
+    w["top_risks"] = top_risks
     
     updated_workers.append(w)
 
